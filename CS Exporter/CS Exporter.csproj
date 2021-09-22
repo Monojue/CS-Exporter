@@ -51,17 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSExporter.cs">
+    <Compile Include="TestCaseSorter\compare.cs" />
+    <Compile Include="CS Exporter\CSExporter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CSExporter.Designer.cs">
+    <Compile Include="CS Exporter\CSExporter.Designer.cs">
       <DependentUpon>CSExporter.cs</DependentUpon>
     </Compile>
-    <Compile Include="DefaultSetting.cs" />
+    <Compile Include="CS Exporter\DefaultSetting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestListBook.cs" />
-    <EmbeddedResource Include="CSExporter.resx">
+    <Compile Include="CS Exporter\TestListBook.cs" />
+    <Compile Include="TestCaseSorter\TestCaseSorter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestCaseSorter\TestCaseSorter.Designer.cs">
+      <DependentUpon>TestCaseSorter.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CS Exporter\CSExporter.resx">
       <DependentUpon>CSExporter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -73,6 +80,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TestCaseSorter\TestCaseSorter.resx">
+      <DependentUpon>TestCaseSorter.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

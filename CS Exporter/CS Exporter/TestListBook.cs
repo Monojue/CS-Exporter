@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
+using System.ComponentModel;
 
 namespace CS_Exporter {
     class TestListBook {
@@ -31,25 +33,36 @@ namespace CS_Exporter {
 
         public string Name { get; set; }
         public string Link { get; set; }
+        public string Biko { get; set; }
 
-        public List<TestListBook> GetTestCaseFormExcel(string ExcelFilePath) {
+        public List<TestListBook> GetTestCaseFormExcel(string ExcelFilePath, out Boolean a) {
             Excel.Application ExcelApp = new Excel.Application();
             Excel.Workbook workbook = ExcelApp.Workbooks.Open(ExcelFilePath);
             Excel._Worksheet worksheet = workbook.Sheets[1];
             Excel.Range range = worksheet.UsedRange;
             int rowCount = range.Rows.Count;
             int colCount = range.Columns.Count;
+            int colplus = 0;
             List<TestListBook> list = new List<TestListBook>();
+
+            if(range.Cells[1, 3].Value2 == "取込ファイルパス"){
+                colplus = 1;
+                a = true;
+            }else{
+                a = false;
+            }
+
+
             for (int i = 2; i <= rowCount; i++) {
                 TestListBook testCase = new TestListBook();
-                for (int j = 1; j <= 2; j++) {
-                    if (range.Cells[i, j] != null && range.Cells[i, j].Value2 != null) {
+                for (int j = 1; j <= 2 + colplus; j++) {
+                    if (range.Cells[i, j+ colplus] != null && range.Cells[i, j+ colplus].Value2 != null) {
                         switch (j) {
                         case 1:
-                            testCase.Name = range.Cells[i, j].Value2.ToString();
+                            testCase.Name = range.Cells[i, j+ colplus].Value2.ToString();
                             break;
                         case 2:
-                            testCase.Link = range.Cells[i, j].Value2.ToString();
+                            testCase.Link = range.Cells[i, j+ colplus].Value2.ToString();
                             break;
                         }
                     }
@@ -74,12 +87,51 @@ namespace CS_Exporter {
 
             return list;
         }
+        Excel.Application excelApp;
+        Excel.Workbook excelWorkBook;
+        Excel.Worksheet excelWorkSheet;
+        public void ExportDataSetToExcel(List<TestListBook> list) {
+            
 
-        public void ExportDotCS(){
+            try {
+                //Creae an Excel application instance
+                excelApp = new Microsoft.Office.Interop.Excel.Application();
+                excelApp.Visible = false;
+                excelApp.DisplayAlerts = false;
+                excelWorkBook = excelApp.Workbooks.Add(Type.Missing);
+
+                //Create an Excel workbook instance and open it from the predefined location
+                excelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.ActiveSheet;
+                excelWorkSheet.Name = "TestCaseSorted";
+
+                excelWorkSheet.Cells[1, 1] = "Name";
+                excelWorkSheet.Cells[1, 2] = "Link";
+                excelWorkSheet.Cells[1, 3] = "Biko";
+
+                for (int j = 0; j < list.Count; j++) {
+
+                    excelWorkSheet.Cells[j + 2, 1] = list[j].Name;
+                    excelWorkSheet.Cells[j + 2, 2] = list[j].Link;
+                    excelWorkSheet.Cells[j + 2, 3] = list[j].Biko;
+                }
+                
+                excelWorkBook.SaveAs(Environment.CurrentDirectory + @"/TestCaseSorted.csv", XlFileFormat.xlCSV);
+
+            } catch (Exception){
+                
+            } finally{
+                
+                excelWorkBook.Close();
+                excelApp.Quit();
+            }
+        }
+
+        public void ExportDotCS(BackgroundWorker background){
 
             TestListBook book = new TestListBook();
-            testCases = book.GetTestCaseFormExcel(testBookpath);
-
+            background.ReportProgress(0);
+            testCases = book.GetTestCaseFormExcel(testBookpath, out Boolean notuse);
+            background.ReportProgress(10);
             SetHeaderAndPublicClass();
 
             output += "\n\n\t\t#region Test\n\n";
@@ -93,7 +145,7 @@ namespace CS_Exporter {
             }
 
             for (int i = 0; i < testCases.Count; i++) {
-
+                background.ReportProgress(20);
                 try {
                     if (!testCases[i].Name.Equals(testCases[i + 1].Name) && testCases[i].Name != null && !testCases[i].Name.Trim().Equals(string.Empty)) {
                         name = testCases[i].Name;
@@ -116,7 +168,9 @@ namespace CS_Exporter {
 
             output += "\t\t#endregion Test\n\t}\n}";
             Gpointer = 0;
+            background.ReportProgress(90);
             WriteCSFile();
+            background.ReportProgress(100);
         }
 
         private void SetHeaderAndPublicClass(){
