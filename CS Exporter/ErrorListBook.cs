@@ -23,50 +23,53 @@ namespace CS_Exporter {
         Excel.Worksheet worksheet;
         Excel.Range range;
 
-        public void GetErrorListFormExcel(List<string> Files, BackgroundWorker background) {
+        public void GetErrorListFormExcel(List<string> Files, string path, BackgroundWorker background) {
             List<ErrorListBook> list = new List<ErrorListBook>();
 
             Excel.Application ExcelApp = new Excel.Application();
             int progress = 1;
+            
             foreach (string file in Files){
                 
-                workbook = ExcelApp.Workbooks.Open(file);
-                worksheet = workbook.Sheets[1];
-                range = worksheet.UsedRange;
-                int rowCount = range.Rows.Count;
-                int dataColumn = 8;
+                if(!background.CancellationPending){
+                    workbook = ExcelApp.Workbooks.Open(file);
+                    worksheet = workbook.Sheets[1];
+                    range = worksheet.UsedRange;
+                    int rowCount = range.Rows.Count;
+                    int dataColumn = 8;
 
-                ErrorListBook book = new ErrorListBook();
-                book.ErrorList = new List<string>();
-                book.Name = range.Cells[2, 1].Value2;
-                for (int i = 2; i <= rowCount; i++) {
-                    string cellValue = range.Cells[i, dataColumn].Value2;
-                    if (range.Cells[i, dataColumn] != null && cellValue != null) {
-                        if (!book.ErrorList.Contains(cellValue)) {
-                            book.ErrorList.Add(cellValue);
+                    ErrorListBook book = new ErrorListBook();
+                    book.ErrorList = new List<string>();
+                    book.Name = range.Cells[2, 1].Value2;
+                    for (int i = 2; i <= rowCount; i++) {
+                        string cellValue = range.Cells[i, dataColumn].Value2;
+                        if (range.Cells[i, dataColumn] != null && cellValue != null) {
+                            if (!book.ErrorList.Contains(cellValue)) {
+                                book.ErrorList.Add(cellValue);
+                            }
                         }
                     }
+                    list.Add(book);
+                    background.ReportProgress(progress++);
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
+                    //release com objects to fully kill excel process from running in the background
+                    Marshal.ReleaseComObject(range);
+                    Marshal.ReleaseComObject(worksheet);
+
+                    //close and release
+                    workbook.Close();
+                    Marshal.ReleaseComObject(workbook);
                 }
-                list.Add(book);
-                background.ReportProgress(progress++);
-
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-
-                //release com objects to fully kill excel process from running in the background
-                Marshal.ReleaseComObject(range);
-                Marshal.ReleaseComObject(worksheet);
-
-                //close and release
-                workbook.Close();
-                Marshal.ReleaseComObject(workbook);
             }
-            ExportDataSetToExcel(list, ExcelApp);
+            if(!background.CancellationPending) ExportDataSetToExcel(list, ExcelApp, path);
             
         }
 
 
-        public void ExportDataSetToExcel(List<ErrorListBook> list, Excel.Application ExcelApp) {
+        public void ExportDataSetToExcel(List<ErrorListBook> list, Excel.Application ExcelApp, string path) {
             try {
                 //ExcelApp.Visible = false;
                 //ExcelApp.DisplayAlerts = false;
@@ -94,7 +97,7 @@ namespace CS_Exporter {
                     worksheet.Cells[1, i+2] = colList[i];
                 }
 
-                workbook.SaveAs(Environment.CurrentDirectory + @"/ErrorManager.csv", XlFileFormat.xlCSV);
+                workbook.SaveAs(path + @"/ErrorManager.csv", XlFileFormat.xlCSV);
             } catch (Exception) {
                 
             }

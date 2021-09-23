@@ -14,7 +14,7 @@ namespace CS_Exporter {
 
         private string pdf, text, name, output, G = "";
         private string testBookpath, inis, addtionalDataPath, gPath, csFilePath = "";
-        private int csKind = 0, Gpointer = 0;
+        private int csKind = 0;
         private List<string> Glist;
         private List<TestListBook> testCases;
 
@@ -168,7 +168,6 @@ namespace CS_Exporter {
             }
 
             output += "\t\t#endregion Test\n\t}\n}";
-            Gpointer = 0;
             background.ReportProgress(90);
             WriteCSFile();
             background.ReportProgress(100);
@@ -286,7 +285,7 @@ namespace CS_Exporter {
                 if (testCases[i].Name.Equals(testCases[i + 1].Name) || testCases[i + 1].Name == null || testCases[i + 1].Name.Trim().Equals(string.Empty)) {
                     return true;
                 }
-            } catch (Exception e) {
+            } catch (Exception) {
                 //last TestCase
                 return false;
             }

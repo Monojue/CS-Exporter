@@ -27,6 +27,9 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.lblProgress = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblCondition = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbErrorPath
@@ -42,7 +45,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "button1";
+            this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -56,17 +59,51 @@
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
-            this.lblProgress.Location = new System.Drawing.Point(30, 83);
+            this.lblProgress.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblProgress.Location = new System.Drawing.Point(138, 48);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(35, 12);
+            this.lblProgress.Size = new System.Drawing.Size(14, 13);
             this.lblProgress.TabIndex = 2;
-            this.lblProgress.Text = "label1";
+            this.lblProgress.Text = "/";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(12, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Progress";
+            // 
+            // lblCondition
+            // 
+            this.lblCondition.AutoSize = true;
+            this.lblCondition.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblCondition.Location = new System.Drawing.Point(250, 48);
+            this.lblCondition.Name = "lblCondition";
+            this.lblCondition.Size = new System.Drawing.Size(30, 13);
+            this.lblCondition.TabIndex = 4;
+            this.lblCondition.Text = "text";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(404, 44);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // ErrorManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(492, 81);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.lblCondition);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.tbErrorPath);
@@ -83,5 +120,8 @@
         private System.Windows.Forms.Button btnStart;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.Label lblProgress;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCondition;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
