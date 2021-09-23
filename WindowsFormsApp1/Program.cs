@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CS_Exporter {
+namespace WindowsFormsApp1 {
     static class Program {
         /// <summary>
         /// The main entry point for the application.
@@ -13,9 +13,7 @@ namespace CS_Exporter {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new CSExporter());
-            //Application.Run(new TestCaseSorter.TestCaseSorter());
-            Application.Run(new ErrorManager.ErrorManager());
+            Application.Run(new Form1());
         }
     }
 }

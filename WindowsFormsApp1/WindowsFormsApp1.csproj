@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BAC9C9A-ACCD-474F-926A-F64A12AA1802}</ProjectGuid>
+    <ProjectGuid>{C608857B-1B65-4DB5-B2C0-B92C2571C396}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CS_Exporter</RootNamespace>
-    <AssemblyName>CS Exporter</AssemblyName>
+    <RootNamespace>WindowsFormsApp1</RootNamespace>
+    <AssemblyName>WindowsFormsApp1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,11 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Excel\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Excel.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,36 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorManager\ErrorManager.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ErrorManager\ErrorManager.Designer.cs">
-      <DependentUpon>ErrorManager.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestCaseSorter\compare.cs" />
-    <Compile Include="CS Exporter\CSExporter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CS Exporter\CSExporter.Designer.cs">
-      <DependentUpon>CSExporter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CS Exporter\DefaultSetting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ErrorListBook.cs" />
-    <Compile Include="TestListBook.cs" />
-    <Compile Include="TestCaseSorter\TestCaseSorter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestCaseSorter\TestCaseSorter.Designer.cs">
-      <DependentUpon>TestCaseSorter.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="CS Exporter\CSExporter.resx">
-      <DependentUpon>CSExporter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorManager\ErrorManager.resx">
-      <DependentUpon>ErrorManager.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -90,9 +63,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TestCaseSorter\TestCaseSorter.resx">
-      <DependentUpon>TestCaseSorter.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,6 +76,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

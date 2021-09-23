@@ -15,7 +15,7 @@ namespace CS_Exporter {
         private string pdf, text, name, output, G = "";
         private string testBookpath, inis, addtionalDataPath, gPath, csFilePath = "";
         private int csKind = 0, Gpointer = 0;
-        private string[] Glist;
+        private List<string> Glist;
         private List<TestListBook> testCases;
 
         public TestListBook(){
@@ -141,7 +141,8 @@ namespace CS_Exporter {
             text = "";
 
             if (!gPath.Equals(string.Empty) && csKind != 0) {
-                Glist = Directory.GetFiles(gPath);
+                Glist = Directory.GetFiles(gPath).ToList();
+                Glist.Sort();
             }
 
             for (int i = 0; i < testCases.Count; i++) {
@@ -228,12 +229,12 @@ namespace CS_Exporter {
                 break;
 
             case (1)://_TorikomiKoji_S
-                text = Glist[Gpointer];
-                Gpointer++;
+                text = GetGPath(name);
+                Glist.Remove(text);
                 output += "\t\t[Test]\n" +
     "\t\tpublic void Test" + name + "() {\n" +
             "\t\t\tstring wTestName = @\"" + name + "\";\n" +
-            "\t\t\tstring wTorikomiFile = FSekkeishoPath + @\"" + pdf + "\";\n" +
+            "\t\t\tstring wTorikomiFile = FSekkeishoPath + @\"" + pdf.TrimEnd() + "\";\n" +
             "\t\t\tstring wTestKojiFile = FInFilePath + @\"" + G + Path.GetFileName(text) + "\";\n" +
             "\t\t\tTorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\n" +
             "\t\t\twTorikomiTest.ExecTorikomiTest_TextKojiData(wTestKojiFile, true);\n" +
@@ -241,12 +242,12 @@ namespace CS_Exporter {
                 break;
 
             case (2)://TorikomiTest_S
-                text = Glist[Gpointer];
-                Gpointer++;
+                text = GetGPath(name);
+                Glist.Remove(text);
                 output += "\t\t[Test]\n" +
     "\t\tpublic void Test" + name + "() {\n" +
             "\t\t\tstring wTestName = @\"" + name + "\";\n" +
-            "\t\t\tstring wTorikomiFile = FSekkeishoPath + @\"" + pdf + "\";\n" +
+            "\t\t\tstring wTorikomiFile = FSekkeishoPath + @\"" + pdf.TrimEnd() + "\";\n" +
             "\t\t\tstring wTestKojiFile = FInFilePath + @\"" + G + Path.GetFileName(text) + "\";\n" +
             "\t\t\tTorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\n" +
             "\t\t\twTorikomiTest.ExecTorikomiTest_TextKojiData(wTestKojiFile, 0);\n" +
@@ -257,6 +258,15 @@ namespace CS_Exporter {
 
             name = "";
             pdf = "";
+        }
+
+        private string GetGPath(string name){
+            foreach(string G in Glist){
+                if(G.Contains(name)){
+                    return G;
+                }
+            }
+            return null;
         }
 
         private void SetFukusuuTestCase(int i){
