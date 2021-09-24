@@ -38,6 +38,7 @@
             this.tbErrorPath.Name = "tbErrorPath";
             this.tbErrorPath.Size = new System.Drawing.Size(370, 19);
             this.tbErrorPath.TabIndex = 0;
+            this.tbErrorPath.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbErrorPath_MouseClick);
             // 
             // btnStart
             // 
@@ -55,6 +56,7 @@
             this.backgroundWorker.WorkerSupportsCancellation = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
             // lblProgress
             // 
@@ -80,11 +82,13 @@
             // 
             this.lblCondition.AutoSize = true;
             this.lblCondition.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblCondition.Location = new System.Drawing.Point(250, 48);
+            this.lblCondition.Location = new System.Drawing.Point(247, 75);
             this.lblCondition.Name = "lblCondition";
-            this.lblCondition.Size = new System.Drawing.Size(30, 13);
+            this.lblCondition.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblCondition.Size = new System.Drawing.Size(233, 13);
             this.lblCondition.TabIndex = 4;
-            this.lblCondition.Text = "text";
+            this.lblCondition.Text = "File Exported to your Path Successfully!";
+            this.lblCondition.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnCancel
             // 
@@ -100,7 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 81);
+            this.ClientSize = new System.Drawing.Size(492, 97);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblCondition);
             this.Controls.Add(this.label1);

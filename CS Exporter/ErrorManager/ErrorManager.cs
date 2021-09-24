@@ -19,7 +19,7 @@ namespace CS_Exporter.ErrorManager {
         List<string> files;
 
         private void btnStart_Click(object sender, EventArgs e) {
-            if(!backgroundWorker.IsBusy){
+            if(!backgroundWorker.IsBusy && !tbErrorPath.Text.Equals(string.Empty)){
                 lblCondition.Text = "";
                 backgroundWorker.RunWorkerAsync();
             }
@@ -28,7 +28,7 @@ namespace CS_Exporter.ErrorManager {
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
             files = Directory.GetFiles(tbErrorPath.Text).ToList();
             ErrorListBook book = new ErrorListBook();
-            book.GetErrorListFormExcel(files, tbErrorPath.Text, backgroundWorker);
+            book.GetErrorListFormExcel(files, tbErrorPath.Text, sender as BackgroundWorker);
         }
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) {
@@ -41,7 +41,18 @@ namespace CS_Exporter.ErrorManager {
         }
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            lblCondition.Text = "Successfully Completed!";
+            if(lblCondition.Text.Equals("")){
+                lblCondition.Text = "File Exported to your Path Successfully!";
+            }
+        }
+
+        private void tbErrorPath_MouseClick(object sender, MouseEventArgs e) {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog()){
+                fbd.SelectedPath = @"C:\UnitTest\S";
+                if (fbd.ShowDialog() == DialogResult.OK) {
+                    tbErrorPath.Text = fbd.SelectedPath;
+                }
+            }
         }
     }
 }

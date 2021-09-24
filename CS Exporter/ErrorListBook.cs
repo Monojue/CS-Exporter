@@ -64,8 +64,13 @@ namespace CS_Exporter {
                     Marshal.ReleaseComObject(workbook);
                 }
             }
-            if(!background.CancellationPending) ExportDataSetToExcel(list, ExcelApp, path);
-            
+            if (background.CancellationPending){
+                //quit and release
+                ExcelApp.Quit();
+                Marshal.ReleaseComObject(ExcelApp);
+            } else{
+                ExportDataSetToExcel(list, ExcelApp, path);
+            }
         }
 
 
