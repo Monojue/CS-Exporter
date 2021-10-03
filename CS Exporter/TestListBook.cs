@@ -17,6 +17,7 @@ namespace CS_Exporter {
         private int csKind = 0;
         private List<string> Glist;
         private List<TestListBook> testCases;
+        private DefaultSetting setting = new DefaultSetting();
 
         public TestListBook(){
 
@@ -134,7 +135,7 @@ namespace CS_Exporter {
             background.ReportProgress(10);
             SetHeaderAndPublicClass();
 
-            output += "\n\n\t\t#region Test\n\n";
+            output += "\r\n\r\n    #region Test\r\n\r\n";
             name = "";
             pdf = "";
             G = @"\G\";
@@ -167,7 +168,7 @@ namespace CS_Exporter {
                 }
             }
 
-            output += "\t\t#endregion Test\n\t}\n}";
+            output += "\t    #endregion Test\r\n    }\r\n}";
             background.ReportProgress(90);
             WriteCSFile();
             background.ReportProgress(100);
@@ -175,42 +176,47 @@ namespace CS_Exporter {
 
         private void SetHeaderAndPublicClass(){
 
-            output = "\t/// <summary>\n\t/// " + inis + "の取込テスト\n\t/// </summary> \n";
+            output = "    /// <summary>\r\n    /// " + inis + "の取込テスト\r\n    /// </summary>\r\n";
 
-            switch (csKind) {
+      
+            try{
+                switch (csKind) {
 
-            case (0)://Additional_S
-                output += "\t[TestFixture, Apartment(System.Threading.ApartmentState.STA)]\n" +
-    "\tpublic class Addtional_S_" + inis + "{\n" +
-            "\t\tconst string FShoshikiName =\"" + inis + "\";\n" +
-            "\t\tconst string FDirectoryName =   @\"" + addtionalDataPath + "\";\n" +
-            "\t\tprivate string FInFilePath = $@\"{ TorikomiTest.C_Test_Data_Dir}\\Gaia.Common.SekkeiTorikomi\\AdditionalData\" + FDirectoryName + @\"\\S\";\n" +
-            "\t\tprivate string FOutFilePath = Path.Combine(TorikomiTest.FUnitTestRootPath, \"S\", FDirectoryName);\n" +
-            "\t\tprivate string FSekkeishoPath = Path.Combine(TorikomiTest.FRootPath, \"設計書\", FDirectoryName);\n";
-                break;
+                case (0)://Additional_S
+                    output += "    [TestFixture, Apartment(System.Threading.ApartmentState.STA)]\r\n" +
+        "    public class Addtional_S_" + inis + " {\r\n" +
+                "        const string FShoshikiName = \"" + inis + "\";\r\n" +
+                "        const string FDirectoryName = @\"" + addtionalDataPath + "\";\r\n" +
+                "        private string FInFilePath = $@\"{TorikomiTest.C_Test_Data_Dir}\\Gaia.Common.SekkeiTorikomi\\AdditionalData\\\" + FDirectoryName + @\"\\S\";\r\n" +
+                "        private string FOutFilePath = Path.Combine(TorikomiTest.FUnitTestRootPath, \"S\", FDirectoryName);\r\n" +
+                "        private string FSekkeishoPath = Path.Combine(TorikomiTest.FRootPath, \"設計書\", FDirectoryName);\r\n";
+                    break;
 
-            case (1)://_TorikomiKoji_S
+                case (1)://_TorikomiKoji_S
 
-                output += "\t[TestFixture, Apartment(System.Threading.ApartmentState.STA)]\n" +
- "\tpublic class Addtional_S_" + inis + "{\n" +
-         "\t\tconst string FShoshikiName =\"" + inis + "\";\n" +
-         "\t\tconst string FDirectoryName =   @\"" + addtionalDataPath + "\";\n" +
-         "\t\tprivate string FInFilePath = $@\"{ TorikomiTest.C_Test_Data_Dir}\\Gaia.Common.SekkeiTorikomi\\AdditionalData\" + FDirectoryName + @\"\\S\";\n" +
-         "\t\tprivate string FOutFilePath = Path.Combine(TorikomiTest.FUnitTestRootPath, \"S\", FDirectoryName);\n" +
-         "\t\tprivate string FSekkeishoPath = Path.Combine(TorikomiTest.FRootPath, \"設計書\", FDirectoryName);\n";
-                break;
+                    output += "    [TestFixture, Apartment(System.Threading.ApartmentState.STA)]\r\n" +
+     "    public class Test_" + inis + " {\r\n" +
+             "        const string FShoshikiName = \"" + inis + "\";\r\n" +
+             "        const string FDirectoryName = @\"" + setting.ShortGpath(gPath).Replace(@"\G", "") + "\";\r\n" +
+             "        private string FInFilePath = $@\"{TorikomiTest.C_Test_Data_Dir}\\TextKojiData\\\" + FDirectoryName;\r\n" +
+             "        private string FOutFilePath = Path.Combine(TorikomiTest.FUnitTestRootPath, \"SS\", FDirectoryName);\r\n" +
+             "        private string FSekkeishoPath = Path.Combine(TorikomiTest.FRootPath, \"設計書\", FDirectoryName);\r\n";
+                    break;
 
-            case (2)://TorikomiTest_S
+                case (2)://TorikomiTest_S
 
-                output += "\t[TestFixture, Apartment(System.Threading.ApartmentState.STA)]\n" +
-    "\tpublic class Addtional_S_" + inis + "{\n" +
-            "\t\tconst string FShoshikiName =\"" + inis + "\";\n" +
-            "\t\tconst string FDirectoryName =   @\"" + addtionalDataPath + "\";\n" +
-            "\t\tprivate string FInFilePath = $@\"{ TorikomiTest.C_Test_Data_Dir}\\Gaia.Common.SekkeiTorikomi\\AdditionalData\" + FDirectoryName + @\"\\S\";\n" +
-            "\t\tprivate string FOutFilePath = Path.Combine(TorikomiTest.FUnitTestRootPath, \"S\", FDirectoryName);\n" +
-            "\t\tprivate string FSekkeishoPath = Path.Combine(TorikomiTest.FRootPath, \"設計書\", FDirectoryName);\n";
-                break;
+                    output += "    [TestFixture, Apartment(System.Threading.ApartmentState.STA)]\r\n" +
+        "    public class Test_" + inis + " {\r\n" +
+                "        const string FShoshikiName = \"" + inis + "\";\r\n" +
+                "        const string FDirectoryName = @\"" + setting.ShortGpath(gPath).Replace(@"\G", "") + "\";\r\n" +
+                "        private string FInFilePath = $@\"{TorikomiTest.C_Test_Data_Dir}\\TextKojiData\\\" + FDirectoryName;\r\n" +
+                "        private string FOutFilePath = Path.Combine(TorikomiTest.FUnitTestRootPath, \"S\", FDirectoryName);\r\n" +
+                "        private string FSekkeishoPath = Path.Combine(TorikomiTest.FRootPath, \"設計書\", FDirectoryName);\r\n";
+                    break;
 
+                }
+            }catch(Exception e){
+                MessageBox.Show(new CSExporter(), e.Message, e.GetType().ToString());
             }
         }
 
@@ -218,39 +224,39 @@ namespace CS_Exporter {
             switch (csKind) {
 
             case (0)://Additional_S
-                output += "\t\t[Test]\n" +
-    "\t\tpublic void Test" + name + "() {\n" +
-            "\t\t\tstring wTestName = @\"" + name + "\";\n" +
-            "\t\t\tstring wTorikomiFile =   @\"" + pdf + "\";\n" +
-            "\t\t\tTorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\n" +
-            "\t\t\twTorikomiTest.ExecAdditionalTest(FInFilePath);\n" +
-        "\t\t}\n\n";
+                output += "        [Test]\r\n" +
+    "        public void Test" + name.Remove(name.IndexOf("_"),1) + "() {\r\n" +
+            "            string wTestName = @\"" + name.Remove(name.IndexOf("_"), 1) + "\";\r\n" +
+            "            string wTorikomiFile = @\"" + pdf.TrimEnd() + "\";\r\n" +
+            "            TorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\r\n" +
+            "            wTorikomiTest.ExecAdditionalTest(FInFilePath);\r\n" +
+        "        }\r\n\r\n";
                 break;
 
             case (1)://_TorikomiKoji_S
                 text = GetGPath(name);
                 Glist.Remove(text);
-                output += "\t\t[Test]\n" +
-    "\t\tpublic void Test" + name + "() {\n" +
-            "\t\t\tstring wTestName = @\"" + name + "\";\n" +
-            "\t\t\tstring wTorikomiFile = FSekkeishoPath + @\"" + pdf.TrimEnd() + "\";\n" +
-            "\t\t\tstring wTestKojiFile = FInFilePath + @\"" + G + Path.GetFileName(text) + "\";\n" +
-            "\t\t\tTorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\n" +
-            "\t\t\twTorikomiTest.ExecTorikomiTest_TextKojiData(wTestKojiFile, true);\n" +
-        "\t\t}\n\n";
+                output += "        [Test]\r\n" +
+    "        public void Test" + name + "() {\r\n" +
+            "            string wTestName = @\"" + name + "\";\r\n" +
+            "            string wTorikomiFile = FSekkeishoPath + @\"" + setting.ShortPDFpath(pdf.TrimEnd(), gPath) + "\";\r\n" +
+            "            string wTestKojiFile = FInFilePath + @\"" + G + Path.GetFileName(text) + "\";\r\n" +
+            "            TorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\r\n" +
+            "            wTorikomiTest.ExecTorikomiTest_TextKojiData(wTestKojiFile, true);\r\n" +
+        "        }\r\n\r\n";
                 break;
 
             case (2)://TorikomiTest_S
                 text = GetGPath(name);
                 Glist.Remove(text);
-                output += "\t\t[Test]\n" +
-    "\t\tpublic void Test" + name + "() {\n" +
-            "\t\t\tstring wTestName = @\"" + name + "\";\n" +
-            "\t\t\tstring wTorikomiFile = FSekkeishoPath + @\"" + pdf.TrimEnd() + "\";\n" +
-            "\t\t\tstring wTestKojiFile = FInFilePath + @\"" + G + Path.GetFileName(text) + "\";\n" +
-            "\t\t\tTorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\n" +
-            "\t\t\twTorikomiTest.ExecTorikomiTest_TextKojiData(wTestKojiFile, 0);\n" +
-        "\t\t}\n\n";
+                output += "        [Test]\r\n" +
+    "        public void Test" + name + "() {\r\n" +
+            "            string wTestName = @\"" + name + "\";\r\n" +
+            "            string wTorikomiFile = FSekkeishoPath + @\"" + setting.ShortPDFpath(pdf.TrimEnd(), gPath) + "\";\r\n" +
+            "            string wTestKojiFile = FInFilePath + @\"" + G + Path.GetFileName(text) + "\";\r\n" +
+            "            TorikomiTest wTorikomiTest = new TorikomiTest(FOutFilePath, FSekkeishoPath, wTestName, FShoshikiName + SekkeiTorikomiDefine.C_INIEXT_S, wTorikomiFile);\r\n" +
+            "            wTorikomiTest.ExecTorikomiTest_TextKojiData(wTestKojiFile, 0);\r\n" +
+        "        }\r\n\r\n";
                 break;
 
             }
@@ -301,8 +307,18 @@ namespace CS_Exporter {
                 } else {
                     //It is new file
                     readline.Clear();
-                    readline.Add("using NUnit.Framework;\nusing System.IO;\nusing Gaia.Common;\n");
-                    readline.Add("namespace Sirius.Gaia.Common.SekkeiTorikomi.Additional_S." + Path.GetFileNameWithoutExtension(csFilePath) + " {");
+                    readline.Add("using NUnit.Framework;\r\nusing System.IO;\r\nusing Gaia.Common;\r\n");
+                    switch(csKind){
+                    case 0:
+                        readline.Add("namespace Sirius.Gaia.Common.SekkeiTorikomi.Additional_S.Test_" + inis + " {");
+                        break;
+                    case 1:
+                        readline.Add("namespace Sirius.Gaia.Common.SekkeiTorikomi._TorikomiKoji_S.Test_" + inis + " {");
+                        break;
+                    case 2:
+                        readline.Add("namespace Sirius.Gaia.Common.SekkeiTorikomi.TorikomiTest_S.Test_" + inis + " {");
+                        break;
+                    }
                     readline.Add(output);
                 }
                 File.WriteAllLines(csFilePath, readline, Encoding.Default);

@@ -52,23 +52,23 @@ namespace CS_Exporter {
                     }
                 }
 
-                if(!found){
-                    for (int j = 0; j < newList.Count; j++) {
+                //if(!found){
+                //    for (int j = 0; j < newList.Count; j++) {
 
-                        // Check with FileName 
-                        // If FileName found, define as Path is Change
-                        if (Path.GetFileName(oldList[i].Link).Equals(Path.GetFileName(newList[j].Link))) {
-                            exportList.Add(newList[j]);
-                            exportList[i].Name = oldList[i].Name;
-                            exportList[i].Biko = "PathChange!";
-                            newList.RemoveAt(j);
-                            found = true;
-                            break;
-                        } else {
-                            found = false;
-                        }
-                    }
-                }
+                //        // Check with FileName 
+                //        // If FileName found, define as Path is Change
+                //        if (Path.GetFileName(oldList[i].Link).Equals(Path.GetFileName(newList[j].Link))) {
+                //            exportList.Add(newList[j]);
+                //            exportList[i].Name = oldList[i].Name;
+                //            exportList[i].Biko = "PathChange!";
+                //            newList.RemoveAt(j);
+                //            found = true;
+                //            break;
+                //        } else {
+                //            found = false;
+                //        }
+                //    }
+                //}
                 
                 // if Not Found
                 if (!found){

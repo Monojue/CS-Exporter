@@ -32,20 +32,20 @@
             this.linkReset = new System.Windows.Forms.LinkLabel();
             this.lblCSFileName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnOpenEx = new System.Windows.Forms.Button();
             this.btninis = new System.Windows.Forms.Button();
-            this.tbAddDatapath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tbTCPath = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tbInis = new System.Windows.Forms.TextBox();
+            this.tbAddDatapath = new System.Windows.Forms.TextBox();
+            this.tbGpath = new System.Windows.Forms.TextBox();
+            this.tbTFile = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tbGpath = new System.Windows.Forms.TextBox();
-            this.btnOpenEx = new System.Windows.Forms.Button();
-            this.tbTFile = new System.Windows.Forms.TextBox();
             this.linkOpenCSV = new System.Windows.Forms.LinkLabel();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.lblProgress = new System.Windows.Forms.Label();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             this.btnRun.Location = new System.Drawing.Point(586, 43);
             this.btnRun.Name = "btnRun";
             this.tableLayoutPanel1.SetRowSpan(this.btnRun, 2);
-            this.btnRun.Size = new System.Drawing.Size(138, 48);
+            this.btnRun.Size = new System.Drawing.Size(138, 44);
             this.btnRun.TabIndex = 25;
             this.btnRun.Text = "テスト作成を実行";
             this.btnRun.UseVisualStyleBackColor = true;
@@ -71,7 +71,7 @@
             "Additional_S",
             "_TorikomiKoji_S",
             "TorikomiTest_S"});
-            this.cbox.Location = new System.Drawing.Point(586, 97);
+            this.cbox.Location = new System.Drawing.Point(586, 98);
             this.cbox.Name = "cbox";
             this.cbox.Size = new System.Drawing.Size(138, 24);
             this.cbox.TabIndex = 23;
@@ -81,7 +81,7 @@
             // 
             this.btnGpath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGpath.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnGpath.Location = new System.Drawing.Point(543, 211);
+            this.btnGpath.Location = new System.Drawing.Point(543, 214);
             this.btnGpath.Name = "btnGpath";
             this.btnGpath.Size = new System.Drawing.Size(37, 22);
             this.btnGpath.TabIndex = 22;
@@ -93,7 +93,7 @@
             // 
             this.btnAdataPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdataPath.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnAdataPath.Location = new System.Drawing.Point(543, 157);
+            this.btnAdataPath.Location = new System.Drawing.Point(543, 159);
             this.btnAdataPath.Name = "btnAdataPath";
             this.btnAdataPath.Size = new System.Drawing.Size(37, 22);
             this.btnAdataPath.TabIndex = 30;
@@ -105,9 +105,9 @@
             // 
             this.btnTFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTFile.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnTFile.Location = new System.Drawing.Point(543, 263);
+            this.btnTFile.Location = new System.Drawing.Point(543, 268);
             this.btnTFile.Name = "btnTFile";
-            this.btnTFile.Size = new System.Drawing.Size(37, 25);
+            this.btnTFile.Size = new System.Drawing.Size(37, 24);
             this.btnTFile.TabIndex = 38;
             this.btnTFile.Text = "....";
             this.btnTFile.UseVisualStyleBackColor = true;
@@ -132,11 +132,11 @@
             this.lblCSFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCSFileName.AutoSize = true;
             this.lblCSFileName.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblCSFileName.Location = new System.Drawing.Point(23, 241);
+            this.lblCSFileName.Location = new System.Drawing.Point(23, 245);
             this.lblCSFileName.Name = "lblCSFileName";
             this.lblCSFileName.Size = new System.Drawing.Size(514, 15);
             this.lblCSFileName.TabIndex = 41;
-            this.lblCSFileName.Text = "HELLLOOOOO";
+            this.lblCSFileName.Text = "Terget File name";
             // 
             // tableLayoutPanel1
             // 
@@ -145,7 +145,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.btnRun, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.cbox, 3, 4);
@@ -170,7 +169,7 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 12;
+            this.tableLayoutPanel1.RowCount = 13;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -183,100 +182,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(753, 317);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(753, 326);
             this.tableLayoutPanel1.TabIndex = 42;
-            // 
-            // btninis
-            // 
-            this.btninis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btninis.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btninis.Location = new System.Drawing.Point(543, 100);
-            this.btninis.Name = "btninis";
-            this.btninis.Size = new System.Drawing.Size(37, 22);
-            this.btninis.TabIndex = 43;
-            this.btninis.Text = "....";
-            this.btninis.UseVisualStyleBackColor = true;
-            this.btninis.Click += new System.EventHandler(this.btninis_Click);
-            // 
-            // tbAddDatapath
-            // 
-            this.tbAddDatapath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAddDatapath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAddDatapath.Location = new System.Drawing.Point(23, 157);
-            this.tbAddDatapath.Name = "tbAddDatapath";
-            this.tbAddDatapath.Size = new System.Drawing.Size(514, 22);
-            this.tbAddDatapath.TabIndex = 39;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(23, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(514, 15);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "テスト対象リスト.csv";
-            // 
-            // tbTCPath
-            // 
-            this.tbTCPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbTCPath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbTCPath.Location = new System.Drawing.Point(23, 46);
-            this.tbTCPath.Name = "tbTCPath";
-            this.tbTCPath.Size = new System.Drawing.Size(514, 22);
-            this.tbTCPath.TabIndex = 35;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(23, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(514, 15);
-            this.label2.TabIndex = 36;
-            this.label2.Text = "ShoshikiName(11埼玉県)";
-            // 
-            // tbInis
-            // 
-            this.tbInis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbInis.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInis.Location = new System.Drawing.Point(23, 100);
-            this.tbInis.Name = "tbInis";
-            this.tbInis.Size = new System.Drawing.Size(514, 22);
-            this.tbInis.TabIndex = 37;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(23, 132);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(514, 15);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "Additional Data Path (11埼玉県\\11埼玉県_土木)";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(23, 187);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(514, 15);
-            this.label5.TabIndex = 40;
-            this.label5.Text = "G Path";
-            // 
-            // tbGpath
-            // 
-            this.tbGpath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbGpath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbGpath.Location = new System.Drawing.Point(23, 211);
-            this.tbGpath.Name = "tbGpath";
-            this.tbGpath.Size = new System.Drawing.Size(514, 22);
-            this.tbGpath.TabIndex = 41;
             // 
             // btnOpenEx
             // 
@@ -290,15 +198,107 @@
             this.btnOpenEx.UseVisualStyleBackColor = true;
             this.btnOpenEx.Click += new System.EventHandler(this.btnOpenEx_Click);
             // 
+            // btninis
+            // 
+            this.btninis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btninis.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btninis.Location = new System.Drawing.Point(543, 101);
+            this.btninis.Name = "btninis";
+            this.btninis.Size = new System.Drawing.Size(37, 22);
+            this.btninis.TabIndex = 43;
+            this.btninis.Text = "....";
+            this.btninis.UseVisualStyleBackColor = true;
+            this.btninis.Click += new System.EventHandler(this.btninis_Click);
+            // 
+            // tbTCPath
+            // 
+            this.tbTCPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTCPath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbTCPath.Location = new System.Drawing.Point(23, 46);
+            this.tbTCPath.Name = "tbTCPath";
+            this.tbTCPath.Size = new System.Drawing.Size(514, 22);
+            this.tbTCPath.TabIndex = 35;
+            // 
+            // tbInis
+            // 
+            this.tbInis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbInis.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInis.Location = new System.Drawing.Point(23, 101);
+            this.tbInis.Name = "tbInis";
+            this.tbInis.Size = new System.Drawing.Size(514, 22);
+            this.tbInis.TabIndex = 37;
+            // 
+            // tbAddDatapath
+            // 
+            this.tbAddDatapath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAddDatapath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAddDatapath.Location = new System.Drawing.Point(23, 159);
+            this.tbAddDatapath.Name = "tbAddDatapath";
+            this.tbAddDatapath.Size = new System.Drawing.Size(514, 22);
+            this.tbAddDatapath.TabIndex = 39;
+            // 
+            // tbGpath
+            // 
+            this.tbGpath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbGpath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbGpath.Location = new System.Drawing.Point(23, 214);
+            this.tbGpath.Name = "tbGpath";
+            this.tbGpath.Size = new System.Drawing.Size(514, 22);
+            this.tbGpath.TabIndex = 41;
+            // 
             // tbTFile
             // 
             this.tbTFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTFile.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTFile.Location = new System.Drawing.Point(23, 265);
+            this.tbTFile.Location = new System.Drawing.Point(23, 269);
             this.tbTFile.Name = "tbTFile";
             this.tbTFile.Size = new System.Drawing.Size(514, 22);
             this.tbTFile.TabIndex = 42;
             this.tbTFile.TextChanged += new System.EventHandler(this.tbTFile_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(23, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(514, 15);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "テスト対象リスト.csv";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(23, 77);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(514, 15);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "ShoshikiName(11埼玉県)";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Location = new System.Drawing.Point(23, 134);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(514, 15);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Additional Data Path (11埼玉県\\11埼玉県_土木)";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.Location = new System.Drawing.Point(23, 190);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(514, 15);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "G Path (11埼玉県\\埼玉県 （土木）\\G)";
             // 
             // linkOpenCSV
             // 
@@ -312,6 +312,17 @@
             this.linkOpenCSV.Text = "Open テスト対象リスト.csv";
             this.linkOpenCSV.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkOpenCSV_LinkClicked);
             // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProgress.Location = new System.Drawing.Point(23, 298);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(514, 20);
+            this.lblProgress.TabIndex = 45;
+            this.lblProgress.Text = "Progress";
+            this.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // backgroundWorker
             // 
             this.backgroundWorker.WorkerReportsProgress = true;
@@ -320,22 +331,11 @@
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // lblProgress
-            // 
-            this.lblProgress.AutoSize = true;
-            this.lblProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblProgress.Location = new System.Drawing.Point(23, 293);
-            this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(514, 24);
-            this.lblProgress.TabIndex = 45;
-            this.lblProgress.Text = "Progress";
-            this.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // CSExporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 317);
+            this.ClientSize = new System.Drawing.Size(753, 326);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "CSExporter";

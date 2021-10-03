@@ -102,7 +102,7 @@ namespace CS_Exporter {
                     worksheet.Cells[1, i+2] = colList[i];
                 }
 
-                workbook.SaveAs(path + @"/ErrorManager.csv", XlFileFormat.xlCSV);
+                workbook.SaveAs(path + @"/ErrorManager.xlsx");
             } catch (Exception) {
                 
             }

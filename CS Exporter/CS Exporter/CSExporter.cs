@@ -12,21 +12,23 @@ namespace CS_Exporter {
 
         string exportpath = "";
         string csKind = "";
+        string fullGpath = "";
         DefaultSetting setting = new DefaultSetting();
 
         public CSExporter() {
             InitializeComponent();
-            cbox.SelectedIndex = -1;
             lblProgress.Text = "";
             setting.LoadSetting();
+            cbox.SelectedIndex = 0;
             refreshLink();
         }
 
         public void refreshLink(){
             tbTCPath.Text = setting.TEST_LIST_FILE;
             tbInis.Text = Path.GetFileNameWithoutExtension(setting.SHOSHIKI_PATH);
-            tbAddDatapath.Text = setting.ExtraceAddtionalData(setting.ADD_DATA_PATH);
-            tbGpath.Text = setting.G_PATH;
+            tbAddDatapath.Text = setting.ShortAddtionalData(setting.ADD_DATA_PATH);
+            tbGpath.Text = setting.ShortGpath(setting.G_PATH);
+            fullGpath = setting.G_PATH;
             tbTFile.Text = setting.Additional_S;
         }
 
@@ -43,7 +45,8 @@ namespace CS_Exporter {
             using (FolderBrowserDialog fbd = new FolderBrowserDialog()) {
                 fbd.SelectedPath = setting.G_PATH;
                 if (fbd.ShowDialog() == DialogResult.OK) {
-                    tbGpath.Text = fbd.SelectedPath;
+                    tbGpath.Text = setting.ShortGpath(fbd.SelectedPath);
+                    fullGpath = fbd.SelectedPath;
                     setting.SetSetting(setting.vTextKojiDataPath, fbd.SelectedPath);
                 }
             }
@@ -89,7 +92,7 @@ namespace CS_Exporter {
             using (FolderBrowserDialog fbd = new FolderBrowserDialog()) {
                 fbd.SelectedPath = setting.ADD_DATA_PATH;
                 if (fbd.ShowDialog() == DialogResult.OK) {
-                    tbAddDatapath.Text = setting.ExtraceAddtionalData(fbd.SelectedPath);
+                    tbAddDatapath.Text = setting.ShortAddtionalData(fbd.SelectedPath);
                     setting.SetSetting(setting.vAdditinalDataPath, fbd.SelectedPath);
                 }
             }
@@ -104,10 +107,11 @@ namespace CS_Exporter {
                 }
             }
         }
+
         TestListBook book;
         private void btnRun_Click(object sender, EventArgs e) {
             if(!backgroundWorker.IsBusy){
-                book = new TestListBook(tbTCPath.Text, tbInis.Text, tbAddDatapath.Text, tbGpath.Text, tbTFile.Text, cbox.SelectedIndex);
+                book = new TestListBook(tbTCPath.Text, tbInis.Text, tbAddDatapath.Text, fullGpath, tbTFile.Text, cbox.SelectedIndex);
                 backgroundWorker.RunWorkerAsync();
             }
         }

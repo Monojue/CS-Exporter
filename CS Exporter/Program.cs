@@ -13,8 +13,8 @@ namespace CS_Exporter {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new CSExporter());
-            //Application.Run(new TestCaseSorter.TestCaseSorter());
+            Application.Run(new CSExporter());
+            Application.Run(new TestCaseSorter.TestCaseSorter());
             Application.Run(new ErrorManager.ErrorManager());
         }
     }

@@ -92,8 +92,17 @@ namespace CS_Exporter {
             File.WriteAllLines(settingFile, setting);
         }
 
-        public string ExtraceAddtionalData(string fullLink){
+        public string ShortAddtionalData(string fullLink){
             return fullLink.Substring(fullLink.IndexOf(@"AdditionalData\")+15);
+        }
+
+        public string ShortGpath(string fullLink) {
+            return fullLink.Substring(fullLink.IndexOf(@"TextKojiData\") + 13);
+        }
+
+        public string ShortPDFpath(string fullLink,string Gpath) {
+            String shortGpath = ShortGpath(Gpath).Replace(@"\G","");
+            return fullLink.Substring(fullLink.IndexOf(shortGpath) + shortGpath.Length);
         }
     }
 }
