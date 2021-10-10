@@ -10,7 +10,7 @@ namespace CS_Exporter {
 
         private static string DEFAULT_ROOT = @"C:\Develop_Env\Sirius\sirius\Gaia\Client\Sekisan\Test.SekkeiTorikomi\Gaia.Common.SekkeiTorikomi\";
 
-        private string DEFAULT_TEST_LIST_FILE = @"C:\\Tools\\ユニットテスト作成用\\テスト対象リスト.csv";
+        private string DEFAULT_TEST_LIST_FILE = @"C:\Tools\ユニットテスト作成用\テスト対象リスト(複数).csv";
         private string DEFAULT_SHOSHIKI_PATH = @"C:\ProgramData\CoBeing\GaiaCloud\ESpec\iniS\11埼玉県_土木.inis";
         private string DEFAULT_G_PATH = @"C:\Develop_Env\Sirius\sirius\Gaia\Client\Sekisan\Test.SekkeiTorikomi\TextKojiData\11埼玉県\埼玉県 （土木）\G";
 

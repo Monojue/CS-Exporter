@@ -79,12 +79,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorManager\ErrorManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ErrorManager\ErrorManager.Designer.cs">
-      <DependentUpon>ErrorManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="TestCaseSorter\compare.cs" />
     <Compile Include="CS Exporter\CSExporter.cs">
       <SubType>Form</SubType>
@@ -95,7 +89,6 @@
     <Compile Include="CS Exporter\DefaultSetting.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ErrorListBook.cs" />
     <Compile Include="TestListBook.cs" />
     <Compile Include="TestCaseSorter\TestCaseSorter.cs">
       <SubType>Form</SubType>
@@ -105,9 +98,6 @@
     </Compile>
     <EmbeddedResource Include="CS Exporter\CSExporter.resx">
       <DependentUpon>CSExporter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorManager\ErrorManager.resx">
-      <DependentUpon>ErrorManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

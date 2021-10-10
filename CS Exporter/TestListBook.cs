@@ -36,6 +36,37 @@ namespace CS_Exporter {
         public string Link { get; set; }
         public string Biko { get; set; }
 
+        public void crateCSV() {
+            try{
+                excelApp = new Microsoft.Office.Interop.Excel.Application();
+                excelApp.Visible = false;
+                excelApp.DisplayAlerts = false;
+                excelWorkBook = excelApp.Workbooks.Add(Type.Missing);
+
+                excelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.ActiveSheet;
+                excelWorkSheet.Name = "テスト対象リスト(複数)";
+
+                excelWorkSheet.Cells[1, 1] = "テスト名";
+                excelWorkSheet.Cells[1, 2] = "取込ファイル(フルパス)";
+
+                excelWorkSheet.Cells[2, 1] = "00_国交省(見積参考資料)_01";
+                excelWorkSheet.Cells[2, 2] = @"C:\Temp\Test\○○工事.pdf";
+                using (SaveFileDialog sfd = new SaveFileDialog(){ Filter = "Excel File|*.csv" }) {
+                    sfd.FileName = "テスト対象リスト(複数).csv";
+                    sfd.CheckFileExists = false;
+                    if (sfd.ShowDialog() == DialogResult.OK) {
+                        excelWorkBook.SaveAs(sfd.FileName, XlFileFormat.xlCSV);
+                        setting.SetSetting(setting.vTesListFile, sfd.FileName);
+                    }
+                }
+            }catch(Exception e){
+                MessageBox.Show(e.Message, e.GetType().ToString());
+            }finally{
+                excelWorkBook.Close();
+                excelApp.Quit();
+            }
+        }
+
         public List<TestListBook> GetTestCaseFormExcel(string ExcelFilePath, out Boolean a) {
             Excel.Application ExcelApp = new Excel.Application();
             Excel.Workbook workbook = ExcelApp.Workbooks.Open(ExcelFilePath);
@@ -281,8 +312,6 @@ namespace CS_Exporter {
                 pdf += "\" + \"*\" + @\"" + testCases[i + 1].Link;
             } else if (csKind == 2) {
                 pdf += "\" + \"*\" + FSekkeishoPath + @\"" + testCases[i + 1].Link;
-            } else {
-
             }
         }
 

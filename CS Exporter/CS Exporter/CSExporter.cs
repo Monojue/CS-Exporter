@@ -58,6 +58,8 @@ namespace CS_Exporter {
                 exportpath = Path.GetDirectoryName(setting.Additional_S);
                 tbGpath.Enabled = false;
                 btnGpath.Enabled = false;
+                tbAddDatapath.Enabled = true;
+                tbAddDatapath.Enabled = true;
                 csKind = setting.vAddtionalSPath;
                 break;
 
@@ -65,6 +67,8 @@ namespace CS_Exporter {
                 exportpath = Path.GetDirectoryName(setting.TorikomiKoji_S);
                 tbGpath.Enabled = true;
                 btnGpath.Enabled = true;
+                tbAddDatapath.Enabled = false;
+                tbAddDatapath.Enabled = false;
                 csKind = setting.vTorikomiKojiPath;
                 break;
 
@@ -72,6 +76,8 @@ namespace CS_Exporter {
                 exportpath = Path.GetDirectoryName(setting.TorikomiTest_S);
                 tbGpath.Enabled = true;
                 btnGpath.Enabled = true;
+                tbAddDatapath.Enabled = false;
+                tbAddDatapath.Enabled = false;
                 csKind = setting.vTorikomiTestPath;
                 break;
 
@@ -125,6 +131,13 @@ namespace CS_Exporter {
             Process.Start(tbTCPath.Text);
         }
 
+        private void linkCreateCSV_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            book = new TestListBook();
+            book.crateCSV();
+            setting.LoadSetting();
+            refreshLink();
+        }
+
         private void tbTFile_TextChanged(object sender, EventArgs e) {
             lblCSFileName.Text = Path.GetFileName(tbTFile.Text);
         }
@@ -143,5 +156,7 @@ namespace CS_Exporter {
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) {
             lblProgress.Text = "File Export Successfully!...";
         }
+
+
     }
 }
