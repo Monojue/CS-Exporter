@@ -19,7 +19,7 @@ namespace CS_Exporter {
         private string DEFAULT_TorikomiKoji_S = DEFAULT_ROOT + @"_TorikomiKoji_S\";
         private string DEFAULT_TorikomiTest_S = DEFAULT_ROOT + @"TorikomiTest_S\";
 
-        public readonly string vTesListFile = "TesListFile";
+        public readonly string vTesListFile = "TestListFile";
         public readonly string vShoshiPath = "ShoshiPath";
         public readonly string vTextKojiDataPath = "TextKojiDataPath";
         public readonly string vAdditinalDataPath = "AdditinalDataPath";
