@@ -12,6 +12,7 @@ using System.ComponentModel;
 namespace CS_Exporter {
     class TestListBook {
 
+        #region Variable
         private string pdf, text, name, output, G = "";
         private string testBookpath, inis, addtionalDataPath, gPath, csFilePath = "";
         private int csKind = 0;
@@ -19,6 +20,17 @@ namespace CS_Exporter {
         private List<TestListBook> testCases;
         private DefaultSetting setting = new DefaultSetting();
 
+        Excel.Application excelApp;
+        Excel.Workbook excelWorkBook;
+        Excel.Worksheet excelWorkSheet;
+
+        public string Name { get; set; }
+        public string Link { get; set; }
+        public string Biko { get; set; }
+
+        #endregion Variable
+
+        #region Constructor
         public TestListBook(){
 
         }
@@ -31,10 +43,9 @@ namespace CS_Exporter {
             this.csFilePath = csFilePath;
             this.csKind = csKind;
         }
+        #endregion Constructor
 
-        public string Name { get; set; }
-        public string Link { get; set; }
-        public string Biko { get; set; }
+        #region Method
 
         public void crateCSV() {
             try{
@@ -56,7 +67,7 @@ namespace CS_Exporter {
                     sfd.CheckFileExists = false;
                     if (sfd.ShowDialog() == DialogResult.OK) {
                         excelWorkBook.SaveAs(sfd.FileName, XlFileFormat.xlCSV);
-                        setting.SetSetting(setting.vTesListFile, sfd.FileName);
+                        setting.SetSetting(setting.vTestListFile, sfd.FileName);
                     }
                 }
             }catch(Exception e){
@@ -119,45 +130,7 @@ namespace CS_Exporter {
 
             return list;
         }
-        Excel.Application excelApp;
-        Excel.Workbook excelWorkBook;
-        Excel.Worksheet excelWorkSheet;
-        public void ExportDataSetToExcel(List<TestListBook> list) {
-            
-
-            try {
-                //Creae an Excel application instance
-                excelApp = new Microsoft.Office.Interop.Excel.Application();
-                excelApp.Visible = false;
-                excelApp.DisplayAlerts = false;
-                excelWorkBook = excelApp.Workbooks.Add(Type.Missing);
-
-                //Create an Excel workbook instance and open it from the predefined location
-                excelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.ActiveSheet;
-                excelWorkSheet.Name = "TestCaseSorted";
-
-                excelWorkSheet.Cells[1, 1] = "Name";
-                excelWorkSheet.Cells[1, 2] = "Link";
-                excelWorkSheet.Cells[1, 3] = "Biko";
-
-                for (int j = 0; j < list.Count; j++) {
-
-                    excelWorkSheet.Cells[j + 2, 1] = list[j].Name;
-                    excelWorkSheet.Cells[j + 2, 2] = list[j].Link;
-                    excelWorkSheet.Cells[j + 2, 3] = list[j].Biko;
-                }
-                
-                excelWorkBook.SaveAs(Environment.CurrentDirectory + @"/TestCaseSorted.csv", XlFileFormat.xlCSV);
-
-            } catch (Exception){
-                
-            } finally{
-                
-                excelWorkBook.Close();
-                excelApp.Quit();
-            }
-        }
-
+  
         public void ExportDotCS(BackgroundWorker background){
 
             TestListBook book = new TestListBook();
@@ -358,6 +331,8 @@ namespace CS_Exporter {
                 return false;
             }
         }
+
+        #endregion Method
     }
 
 

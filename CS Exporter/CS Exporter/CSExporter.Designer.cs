@@ -32,8 +32,6 @@
             this.linkReset = new System.Windows.Forms.LinkLabel();
             this.lblCSFileName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnOpenEx = new System.Windows.Forms.Button();
-            this.btninis = new System.Windows.Forms.Button();
             this.tbTCPath = new System.Windows.Forms.TextBox();
             this.tbInis = new System.Windows.Forms.TextBox();
             this.tbAddDatapath = new System.Windows.Forms.TextBox();
@@ -43,10 +41,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.linkOpenCSV = new System.Windows.Forms.LinkLabel();
             this.lblProgress = new System.Windows.Forms.Label();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.btnOpenEx = new System.Windows.Forms.Button();
+            this.btninis = new System.Windows.Forms.Button();
+            this.linkOpenCSV = new System.Windows.Forms.LinkLabel();
             this.linkCreateCSV = new System.Windows.Forms.LinkLabel();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -188,30 +189,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(753, 326);
             this.tableLayoutPanel1.TabIndex = 42;
             // 
-            // btnOpenEx
-            // 
-            this.btnOpenEx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenEx.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnOpenEx.Location = new System.Drawing.Point(553, 46);
-            this.btnOpenEx.Name = "btnOpenEx";
-            this.btnOpenEx.Size = new System.Drawing.Size(37, 22);
-            this.btnOpenEx.TabIndex = 43;
-            this.btnOpenEx.Text = "....";
-            this.btnOpenEx.UseVisualStyleBackColor = true;
-            this.btnOpenEx.Click += new System.EventHandler(this.btnOpenEx_Click);
-            // 
-            // btninis
-            // 
-            this.btninis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btninis.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btninis.Location = new System.Drawing.Point(553, 101);
-            this.btninis.Name = "btninis";
-            this.btninis.Size = new System.Drawing.Size(37, 22);
-            this.btninis.TabIndex = 43;
-            this.btninis.Text = "....";
-            this.btninis.UseVisualStyleBackColor = true;
-            this.btninis.Click += new System.EventHandler(this.btninis_Click);
-            // 
             // tbTCPath
             // 
             this.tbTCPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -307,18 +284,6 @@
             this.label5.TabIndex = 40;
             this.label5.Text = "G Path (11埼玉県\\埼玉県 （土木）\\G)";
             // 
-            // linkOpenCSV
-            // 
-            this.linkOpenCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkOpenCSV.AutoSize = true;
-            this.linkOpenCSV.Location = new System.Drawing.Point(596, 4);
-            this.linkOpenCSV.Name = "linkOpenCSV";
-            this.linkOpenCSV.Size = new System.Drawing.Size(154, 12);
-            this.linkOpenCSV.TabIndex = 44;
-            this.linkOpenCSV.TabStop = true;
-            this.linkOpenCSV.Text = "Open テスト対象リスト(複数)";
-            this.linkOpenCSV.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkOpenCSV_LinkClicked);
-            // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
@@ -330,13 +295,41 @@
             this.lblProgress.Text = "Progress";
             this.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // backgroundWorker
+            // btnOpenEx
             // 
-            this.backgroundWorker.WorkerReportsProgress = true;
-            this.backgroundWorker.WorkerSupportsCancellation = true;
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            this.btnOpenEx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenEx.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnOpenEx.Location = new System.Drawing.Point(553, 46);
+            this.btnOpenEx.Name = "btnOpenEx";
+            this.btnOpenEx.Size = new System.Drawing.Size(37, 22);
+            this.btnOpenEx.TabIndex = 43;
+            this.btnOpenEx.Text = "....";
+            this.btnOpenEx.UseVisualStyleBackColor = true;
+            this.btnOpenEx.Click += new System.EventHandler(this.btnOpenEx_Click);
+            // 
+            // btninis
+            // 
+            this.btninis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btninis.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btninis.Location = new System.Drawing.Point(553, 101);
+            this.btninis.Name = "btninis";
+            this.btninis.Size = new System.Drawing.Size(37, 22);
+            this.btninis.TabIndex = 43;
+            this.btninis.Text = "....";
+            this.btninis.UseVisualStyleBackColor = true;
+            this.btninis.Click += new System.EventHandler(this.btninis_Click);
+            // 
+            // linkOpenCSV
+            // 
+            this.linkOpenCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkOpenCSV.AutoSize = true;
+            this.linkOpenCSV.Location = new System.Drawing.Point(596, 4);
+            this.linkOpenCSV.Name = "linkOpenCSV";
+            this.linkOpenCSV.Size = new System.Drawing.Size(154, 12);
+            this.linkOpenCSV.TabIndex = 44;
+            this.linkOpenCSV.TabStop = true;
+            this.linkOpenCSV.Text = "Open テスト対象リスト(複数)";
+            this.linkOpenCSV.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkOpenCSV_LinkClicked);
             // 
             // linkCreateCSV
             // 
@@ -351,6 +344,14 @@
             this.linkCreateCSV.Text = "Create テスト対象リスト(複数)";
             this.linkCreateCSV.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCreateCSV_LinkClicked);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
             // CSExporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -359,9 +360,9 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximumSize = new System.Drawing.Size(2000, 365);
-            this.MinimumSize = new System.Drawing.Size(0, 365);
+            this.MinimumSize = new System.Drawing.Size(16, 365);
             this.Name = "CSExporter";
-            this.Text = "CS Exporter";
+            this.Text = "CS Exporter v1.0";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -394,6 +395,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.LinkLabel linkCreateCSV;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

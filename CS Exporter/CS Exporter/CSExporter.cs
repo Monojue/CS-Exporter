@@ -34,9 +34,10 @@ namespace CS_Exporter {
 
         private void btnOpenEx_Click(object sender, EventArgs e) {
             using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.csv|Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx" }) {
+                ofd.InitialDirectory = Path.GetDirectoryName(setting.TEST_LIST_FILE);
                 if (ofd.ShowDialog() == DialogResult.OK) {
                     tbTCPath.Text = ofd.FileName;
-                    setting.SetSetting(setting.vTesListFile, ofd.FileName);
+                    setting.SetSetting(setting.vTestListFile, ofd.FileName);
                 }
             }
         }
@@ -143,7 +144,6 @@ namespace CS_Exporter {
         }
 
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) {
-            
             book.ExportDotCS(backgroundWorker);
         }
 
@@ -154,9 +154,8 @@ namespace CS_Exporter {
         }
 
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) {
-            lblProgress.Text = "File Export Successfully!...";
+            lblProgress.Text = "File Export Successfully!";
+            MessageBox.Show(this, "少なくとも一度は確認してください。", "File Export Successfully!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
     }
 }

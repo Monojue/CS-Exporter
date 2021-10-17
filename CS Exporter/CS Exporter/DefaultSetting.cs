@@ -19,7 +19,7 @@ namespace CS_Exporter {
         private string DEFAULT_TorikomiKoji_S = DEFAULT_ROOT + @"_TorikomiKoji_S\";
         private string DEFAULT_TorikomiTest_S = DEFAULT_ROOT + @"TorikomiTest_S\";
 
-        public readonly string vTesListFile = "TestListFile";
+        public readonly string vTestListFile = "TestListFile";
         public readonly string vShoshiPath = "ShoshiPath";
         public readonly string vTextKojiDataPath = "TextKojiDataPath";
         public readonly string vAdditinalDataPath = "AdditinalDataPath";
@@ -54,7 +54,7 @@ namespace CS_Exporter {
         public void ResetSetting(){
             setting = new List<string>();
 
-            setting.Add(vTesListFile + "=" + DEFAULT_TEST_LIST_FILE);
+            setting.Add(vTestListFile + "=" + DEFAULT_TEST_LIST_FILE);
             setting.Add(vShoshiPath + "=" + DEFAULT_SHOSHIKI_PATH);
             setting.Add(vTextKojiDataPath + "=" + DEFAULT_G_PATH);
             setting.Add(vAdditinalDataPath + "=" + DEFAULT_ADD_DATA_PATH);
@@ -70,7 +70,7 @@ namespace CS_Exporter {
             if(File.Exists(settingFile)){
                 setting = File.ReadAllLines(settingFile).ToList();
                 foreach(string line in setting){
-                    if(line.Contains(vTesListFile)) TEST_LIST_FILE = line.Replace("TesListFile=", "");
+                    if(line.Contains(vTestListFile)) TEST_LIST_FILE = line.Replace("TestListFile=", "");
                     if (line.Contains(vShoshiPath)) SHOSHIKI_PATH = line.Replace("ShoshiPath=", "");
                     if (line.Contains(vTextKojiDataPath)) G_PATH = line.Replace("TextKojiDataPath=", "");
                     if (line.Contains(vAdditinalDataPath)) ADD_DATA_PATH = line.Replace("AdditinalDataPath=", "");
@@ -90,6 +90,7 @@ namespace CS_Exporter {
                 } 
             }
             File.WriteAllLines(settingFile, setting);
+            LoadSetting();
         }
 
         public string ShortAddtionalData(string fullLink){
